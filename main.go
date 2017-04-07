@@ -45,7 +45,9 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	{
+	for _, event := range events {
+		if event.Type == linebot.EventTypeMessage {
+			{
   "events": [
       {
         "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
@@ -63,4 +65,6 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
       }
   ]
 }
+		}
+	}
 }
