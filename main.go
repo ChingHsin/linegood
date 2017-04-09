@@ -12,7 +12,7 @@
 
 package main
 
-import (
+import (                //載入套件
 	"fmt"
 	"log"
 	"net/http"
@@ -21,7 +21,7 @@ import (
 	"github.com/line/line-bot-sdk-go/linebot"
 )
 
-var bot *linebot.Client
+var bot *linebot.Client  //宣告
 
 func main() {
 	var err error
@@ -36,7 +36,7 @@ func main() {
 func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	events, err := bot.ParseRequest(r)
 
-	if err != nil {
+	if err != nil {						//改變訊息標頭代號
 		if err == linebot.ErrInvalidSignature {
 			w.WriteHeader(400)
 		} else {
@@ -45,7 +45,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	for _, event := range events {
+	for _, event := range events {                           //回覆原句
 		if event.Type == linebot.EventTypeMessage {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
